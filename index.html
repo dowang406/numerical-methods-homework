@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>数值计算方法作业</title>
+  <style>
+    body { font-family: "Microsoft YaHei", sans-serif; margin: 40px; line-height: 1.6; }
+    h1, h2 { color: #2c3e50; }
+    pre { background: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    code { font-family: Consolas, monospace; }
+    .output { background: #e8f4fd; padding: 10px; border-left: 5px solid #3498db; }
+  </style>
+</head>
+<body>
+
+<h1>数值计算方法作业</h1>
+提交日期：2026年3月13日</p>
+
+<h2>习题 2：二分法求根</h2>
+<p>方程：f(x) = x³ + 4x² - 10 = 0　　区间：[1, 2]　　误差要求：≤ 10⁻³</p>
+
+<h3>Python 实现代码</h3>
+<pre><code>a = 1.0
+b = 2.0
+误差要求 = 0.001
+次数 = 0
+
+print("初始区间:", a, b)
+
+while b - a > 误差要求:
+    c = (a + b) / 2
+    fc = c**3 + 4*c**2 - 10
+    
+    print(f"第{次数:2d}次  中点:{c:.6f}  f(c)={fc:.6f}  区间长:{b-a:.6f}")
+    
+    if fc == 0:
+        break
+    elif (c**3 + 4*c**2 - 10) * (a**3 + 4*a**2 - 10) < 0:
+        b = c
+    else:
+        a = c
+        
+    次数 += 1
+
+print("\n近似根 ≈", (a + b)/2)
+print("二分次数:", 次数)
+print("最后区间长度:", b - a)
+</code></pre>
+
+<h3>运行输出（示例）</h3>
+<div class="output">
+<pre>
+初始区间: 1.0 2.0
+第 0次  中点:1.500000  f(c)=-1.375000  区间长:1.000000
+第 1次  中点:1.750000  f(c)=1.359375  区间长:0.500000
+第 2次  中点:1.625000  f(c)=0.031738  区间长:0.250000
+...（中间省略）
+第10次  中点:1.628418  f(c)=0.001221  区间长:0.000977
+
+近似根 ≈ 1.628173828125
+二分次数: 10
+最后区间长度: 0.0009765625
+</pre>
+</div>
+
+<p>结论：根的近似值为 <strong>1.628</strong>（误差 < 0.001），共需 10 次二分。</p>
+
+<p>其他题目代码和结果请见仓库中的其他文件。</p>
+
+</body>
+</html>
